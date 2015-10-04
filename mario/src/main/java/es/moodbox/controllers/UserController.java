@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.mongodb.BasicDBObject;
 import com.mongodb.util.JSON;
 
+import app.Greeting;
 import es.moodbox.dao.IUserDAO;
-import hello.Greeting;
 
 @Controller // Defines that this class is a spring bean
 @RestController
