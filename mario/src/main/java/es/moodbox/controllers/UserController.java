@@ -71,7 +71,6 @@ public class UserController {
         log.info("lang: " + lang);
 
         log.info("GET user that has token: " + token);
-        log.info("UserDAO is null"+userDAO);
 
         //Invalid credentials
         if (token == null || token.isEmpty()) {
