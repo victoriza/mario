@@ -22,9 +22,9 @@ import es.moodbox.dao.IUserDAO;
 
 @Controller // Defines that this class is a spring bean
 @RestController
-public class UserController {
+public class EmailController {
     
-	private static final Logger log = Logger.getLogger(UserController.class.getName());
+	private static final Logger log = Logger.getLogger(EmailController.class.getName());
 
 	// Tells the application context to inject an instance of UserService here
     @Autowired
