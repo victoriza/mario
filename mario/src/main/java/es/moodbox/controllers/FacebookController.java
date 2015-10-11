@@ -5,6 +5,7 @@ import java.util.logging.Logger;
 import javax.inject.Inject;
 
 import org.springframework.social.facebook.api.Facebook;
+import org.springframework.social.facebook.api.FacebookProfile;
 import org.springframework.social.facebook.api.PagedList;
 import org.springframework.social.facebook.api.Post;
 import org.springframework.stereotype.Controller;
@@ -27,15 +28,23 @@ public class FacebookController {
 
     @RequestMapping(method=RequestMethod.GET)
     public String helloFacebook(Model model) {
-    	log.info("!!model -- : " + model+" @ facebook -- : " + facebook);
+    	log.info("model: " + model == null ? " no model " : model.toString()+" @ facebook -- : " + facebook);
 
     	if (!facebook.isAuthorized()) {
             return "redirect:/connect/facebook";
         }
+    	FacebookProfile profile = facebook.userOperations().getUserProfile();
+    	log.info("user data: " + profile.getName());
+    	log.info("user data: " + profile.getFirstName());
+    	log.info("user data: " + profile.getLastName());
+    	log.info("user data: " + profile.getEmail());
+    	log.info("user data: " + profile.getLink());
+    	log.info("user data: " + profile.getLocale());
+    	log.info("user data: " + profile.getAgeRange());
 
-        model.addAttribute(facebook.userOperations().getUserProfile());
-        PagedList<Post> homeFeed = facebook.feedOperations().getHomeFeed();
-        model.addAttribute("feed", homeFeed);
+    	model.addAttribute(profile);
+        //PagedList<Post> homeFeed = facebook.feedOperations().getHomeFeed();
+        //model.addAttribute("feed", homeFeed);
 
         return "hello";
     }
